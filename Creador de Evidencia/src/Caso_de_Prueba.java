@@ -76,4 +76,9 @@ public class Caso_de_Prueba {
         this.Nombre = Nombre;
     }
 
+    @Override
+    public String toString() {
+        return Nombre;
+    }
+
 }

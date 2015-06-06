@@ -52,10 +52,10 @@ public class Word {
     }
 
     public void AgregarEncabezado() {
-        wordMLPackage.getMainDocumentPart().addStyledParagraphOfText("Title", "Evidencia de Defecto");
+        wordMLPackage.getMainDocumentPart().addStyledParagraphOfText("Title", Configuracion.getInstance().getTitulo());
         Tbl table = factory.createTbl();
         int anchoCelda1 = 2000;
-        int anchoCelda2 = 7000;
+        int anchoCelda2 = 8000;
         addBorders(table);
 
         Tr tr = factory.createTr();
@@ -193,8 +193,6 @@ public class Word {
     }
     
     private String getFecha(){
-        Format formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String fecha = formatter.format(Calendar.getInstance().getTime());
-        return fecha;
+        return Configuracion.getInstance().getDate();
     }
 }
