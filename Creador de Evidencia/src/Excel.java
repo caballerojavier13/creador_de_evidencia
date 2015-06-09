@@ -58,9 +58,12 @@ public class Excel {
         Worksheet ws = worksheets.get(0).getJaxbElement();
         SheetData data = ws.getSheetData();
         Caso_de_Prueba cp = new Caso_de_Prueba();
-        for (Row r : data.getRow().subList(1, data.getRow().size())) {
-
-            if(getData(r.getC().get(Num_Col_Step)).equalsIgnoreCase("Step 1")){
+        
+        int tam = data.getRow().size();
+        for (Row r : data.getRow().subList(1, tam)) {
+            try{
+            String data_cell = getData(r.getC().get(this.Num_Col_Step));
+            if(data_cell.equalsIgnoreCase("Step 1")){
                 resultado.add(cp);
                 cp = new Caso_de_Prueba();
                 cp.setNombre(getData(r.getC().get(Num_Col_Nombre)));
@@ -68,7 +71,10 @@ public class Excel {
             }else{
                 cp.addStep(getStep(r.getC().get(Num_Col_Descripcion)));
             }
-            
+            }catch(java.lang.NullPointerException e){
+                resultado.add(cp);
+                break;
+            }
         }
         resultado.remove(0);
         return resultado;
@@ -105,7 +111,7 @@ public class Excel {
             try {
                 resultado = sharedStrings.getJaxbElement().getSi().get(Integer.parseInt(c.getV())).getT().getValue();
             } catch (java.lang.NullPointerException e) {
-
+                
             }
         } else {
             resultado = c.getV();

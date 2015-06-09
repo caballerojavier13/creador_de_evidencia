@@ -2,10 +2,12 @@
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 import javax.swing.JFileChooser;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import org.apache.commons.io.filefilter.WildcardFileFilter;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -78,6 +80,26 @@ public class MainVIsual extends javax.swing.JFrame {
         listadoCP = new javax.swing.JList();
         progress_bar1 = new javax.swing.JProgressBar();
         bar_state1 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
+        progress_bar2 = new javax.swing.JProgressBar();
+        bar_state2 = new javax.swing.JLabel();
+        btn_start2 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        tam_nombre_corto2 = new javax.swing.JSpinner();
+        Num_Col_Descripcion2 = new javax.swing.JSpinner();
+        Num_Col_Step2 = new javax.swing.JSpinner();
+        Num_Col_Nombre2 = new javax.swing.JSpinner();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        txt_carpeta2 = new javax.swing.JTextField();
+        jButton8 = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
+        jButton9 = new javax.swing.JButton();
+        txt_excel2 = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Generador de Plantillas de Evidencias");
@@ -397,25 +419,179 @@ public class MainVIsual extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Forma Selectiva", jScrollPane1);
 
+        progress_bar2.setStringPainted(true);
+
+        bar_state2.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        bar_state2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("")));
+
+        btn_start2.setText("Iniciar");
+        btn_start2.setEnabled(false);
+        btn_start2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_start2ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setText("Configuración");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        tam_nombre_corto2.setValue(17);
+
+        Num_Col_Descripcion2.setValue(8);
+
+        Num_Col_Step2.setValue(7);
+
+        Num_Col_Nombre2.setValue(3);
+
+        jLabel14.setText("Número de columna del nombre del caso de prueba:");
+
+        jLabel15.setText("Número de columna del nombre del paso:");
+
+        jLabel16.setText("Número de columna de la descripción del paso:");
+
+        jLabel17.setText("Cantidad de caracteres del nombre corto de caso de prueba:");
+
+        txt_carpeta2.setEditable(false);
+        txt_carpeta2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/folder-search.png"))); // NOI18N
+        jButton8.setToolTipText("");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        jLabel18.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        jLabel18.setText("Directorio de salida:");
+
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/folder-search.png"))); // NOI18N
+        jButton9.setToolTipText("");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        txt_excel2.setEditable(false);
+        txt_excel2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
+        jLabel19.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        jLabel19.setText("Carpeta con el diseño de los casos de prueba:");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel17)
+                                    .addComponent(jLabel15)
+                                    .addComponent(jLabel16)
+                                    .addComponent(jLabel14))
+                                .addGap(93, 93, 93)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Num_Col_Descripcion2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tam_nombre_corto2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Num_Col_Step2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Num_Col_Nombre2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(39, 39, 39)
+                                .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(txt_carpeta2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(txt_excel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel19)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(btn_start2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bar_state2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(progress_bar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(20, 20, 20))))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabel19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_excel2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addComponent(jLabel18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_carpeta2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Num_Col_Nombre2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Num_Col_Step2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel15))
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Num_Col_Descripcion2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel16))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tam_nombre_corto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel17)))
+                    .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btn_start2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(bar_state2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(progress_bar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jScrollPane3.setViewportView(jPanel2);
+
+        jTabbedPane1.addTab("Forma por Carpeta", jScrollPane3);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(50, 50, 50))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 856, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(32, 32, 32)
                 .addComponent(jLabel3)
-                .addGap(16, 16, 16)
+                .addGap(18, 18, 18)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 628, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -437,7 +613,7 @@ public class MainVIsual extends javax.swing.JFrame {
         casos_de_Prueba.addAll(listadoCP.getSelectedValuesList());
         int cant_CP = casos_de_Prueba.size();
         crear_carpeta(url_salida, Nombre_CU);
-        
+
         bar_state1.setText("Creando archivos de word ...");
         System.out.println("Cantidad de Casos de prueba: " + cant_CP);
         progress_bar1.setMinimum(0);
@@ -493,6 +669,7 @@ public class MainVIsual extends javax.swing.JFrame {
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
             if (selectedFile.getName().indexOf(".xls") > 0) {
+                listadoCP.removeAll();
                 txt_excel1.setText(selectedFile.getAbsolutePath());
 
                 Excel excel = new Excel(selectedFile, ((Integer) Num_Col_Nombre.getValue()), ((Integer) Num_Col_Step.getValue()), ((Integer) Num_Col_Descripcion.getValue()));
@@ -502,9 +679,11 @@ public class MainVIsual extends javax.swing.JFrame {
                 if (!txt_carpeta1.getText().isEmpty()) {
                     btn_start1.setEnabled(true);
                 }
-            }else{
-                listadoCP.removeAll();
+            } else {
+                listadoCP.setListData(new Vector());
             }
+        } else {
+            listadoCP.setListData(new Vector());
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -584,6 +763,88 @@ public class MainVIsual extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btn_start2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_start2ActionPerformed
+        // TODO add your handling code here:
+        String url_salida = txt_carpeta2.getText();
+        bar_state2.setText("Analizando archivo de excel ...");
+        File folder_excel = new java.io.File(txt_excel2.getText());
+
+        File[] listFiles = folder_excel.listFiles();
+        String[] ext_acept = {".xls", ".xlsx"};
+        progress_bar2.setMinimum(0);
+        progress_bar2.setValue(0);
+        progress_bar2.setMaximum(listFiles.length - 1);
+        int k = 0;
+        for (File f : listFiles) {
+            if (f.getName().endsWith(".xls") || f.getName().endsWith(".xlsx")) {
+                Excel excel = new Excel(f, ((Integer) Num_Col_Nombre2.getValue()), ((Integer) Num_Col_Step2.getValue()), ((Integer) Num_Col_Descripcion2.getValue()));
+                String Nombre_CU = f.getName().substring(0, f.getName().indexOf(".xls"));
+                List<Caso_de_Prueba> casos_de_Prueba = excel.getCasos_de_Prueba();
+                int cant_CP = casos_de_Prueba.size();
+                crear_carpeta(url_salida, Nombre_CU);
+                bar_state2.setText("Creando archivos de word ...");
+                System.out.println("Cantidad de Casos de prueba: " + cant_CP);
+
+                for (int i = 0; i < cant_CP; i++) {
+                    progress_bar2.setValue(i);
+                    Word w = new Word(url_salida + "/" + Nombre_CU, casos_de_Prueba.get(i).getNombre(), ((Integer) tam_nombre_corto.getValue()));
+                    w.AgregarEncabezado();
+                    for (int j = 0; j < casos_de_Prueba.get(i).getSteps().size(); j++) {
+                        w.AgregarStep(j, casos_de_Prueba.get(i).getSteps().get(j));
+                    }
+                    w.Guardar();
+                }
+            }
+            progress_bar2.setValue(k++);
+        }
+
+        bar_state2.setText("Listo!");
+    }//GEN-LAST:event_btn_start2ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        new Configuracion_Visual(this, true).setVisible(true);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        fileChooser.setDialogTitle("Seleccione un carpeta destino");
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int result = fileChooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            txt_carpeta2.setText(selectedFile.getAbsolutePath());
+            if (!txt_excel2.getText().isEmpty()) {
+                btn_start2.setEnabled(true);
+            }
+        } else {
+            btn_start2.setEnabled(false);
+            txt_carpeta2.setText("");
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        fileChooser.setDialogTitle("Seleccione la carpeta con los diseño de los casos de prueba");
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int result = fileChooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            txt_excel2.setText(selectedFile.getAbsolutePath());
+            if (!txt_carpeta2.getText().isEmpty()) {
+                btn_start2.setEnabled(true);
+            }
+        } else {
+            btn_start2.setEnabled(false);
+            txt_excel2.setText("");
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -640,25 +901,39 @@ public class MainVIsual extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner Num_Col_Descripcion;
     private javax.swing.JSpinner Num_Col_Descripcion1;
+    private javax.swing.JSpinner Num_Col_Descripcion2;
     private javax.swing.JSpinner Num_Col_Nombre;
     private javax.swing.JSpinner Num_Col_Nombre1;
+    private javax.swing.JSpinner Num_Col_Nombre2;
     private javax.swing.JSpinner Num_Col_Step;
     private javax.swing.JSpinner Num_Col_Step1;
+    private javax.swing.JSpinner Num_Col_Step2;
     private javax.swing.JLabel bar_state;
     private javax.swing.JLabel bar_state1;
+    private javax.swing.JLabel bar_state2;
     private javax.swing.JButton btn_start;
     private javax.swing.JButton btn_start1;
+    private javax.swing.JButton btn_start2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -668,18 +943,24 @@ public class MainVIsual extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JList listadoCP;
     private javax.swing.JProgressBar progress_bar;
     private javax.swing.JProgressBar progress_bar1;
+    private javax.swing.JProgressBar progress_bar2;
     private javax.swing.JSpinner tam_nombre_corto;
     private javax.swing.JSpinner tam_nombre_corto1;
+    private javax.swing.JSpinner tam_nombre_corto2;
     private javax.swing.JTextField txt_carpeta;
     private javax.swing.JTextField txt_carpeta1;
+    private javax.swing.JTextField txt_carpeta2;
     private javax.swing.JTextField txt_excel;
     private javax.swing.JTextField txt_excel1;
+    private javax.swing.JTextField txt_excel2;
     // End of variables declaration//GEN-END:variables
 }
