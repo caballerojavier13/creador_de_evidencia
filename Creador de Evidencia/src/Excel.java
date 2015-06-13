@@ -55,28 +55,31 @@ public class Excel {
 
     public List<Caso_de_Prueba> getCasos_de_Prueba() {
         List<Caso_de_Prueba> resultado = new ArrayList();
-        Worksheet ws = worksheets.get(0).getJaxbElement();
+        Worksheet ws = worksheets.get(worksheets.size()-1).getJaxbElement();
         SheetData data = ws.getSheetData();
-        Caso_de_Prueba cp = new Caso_de_Prueba();
-        
-        int tam = data.getRow().size();
-        for (Row r : data.getRow().subList(1, tam)) {
-            try{
-            String data_cell = getData(r.getC().get(this.Num_Col_Step));
-            if(data_cell.equalsIgnoreCase("Step 1")){
-                resultado.add(cp);
-                cp = new Caso_de_Prueba();
-                cp.setNombre(getData(r.getC().get(Num_Col_Nombre)));
-                cp.addStep(getStep(r.getC().get(Num_Col_Descripcion)));
-            }else{
-                cp.addStep(getStep(r.getC().get(Num_Col_Descripcion)));
+        Caso_de_Prueba cp = null;
+        List<Row> row = data.getRow();
+        for (Row r : row) {
+            try {
+                String data_cell = getData(r.getC().get(this.Num_Col_Step));
+                if (data_cell.equalsIgnoreCase("Step 1")) {
+                    if (cp != null) {
+                        resultado.add(cp);
+                    }
+                    cp = new Caso_de_Prueba();
+                    cp.setNombre(getData(r.getC().get(Num_Col_Nombre)));
+                    cp.addStep(getStep(r.getC().get(Num_Col_Descripcion)));
+
+                } else {
+                    cp.addStep(getStep(r.getC().get(Num_Col_Descripcion)));
+                }
+            } catch (java.lang.NullPointerException e) {
+                
             }
-            }catch(java.lang.NullPointerException e){
-                resultado.add(cp);
-                break;
-            }
+            
         }
-        resultado.remove(0);
+        resultado.add(cp);
+
         return resultado;
     }
 
@@ -111,20 +114,20 @@ public class Excel {
             try {
                 resultado = sharedStrings.getJaxbElement().getSi().get(Integer.parseInt(c.getV())).getT().getValue();
             } catch (java.lang.NullPointerException e) {
-                
+
             }
         } else {
             resultado = c.getV();
         }
         return resultado;
     }
-    
+
     private Step getStep(Cell c) {
         Step resultado = new Step();
         if (c.getT().equals(STCellType.S)) {
             try {
                 String[] split = sharedStrings.getJaxbElement().getSi().get(Integer.parseInt(c.getV())).getT().getValue().split("\n");
-                for(int i = 0; i< split.length; i ++){
+                for (int i = 0; i < split.length; i++) {
                     resultado.addPaso(split[i]);
                 }
             } catch (java.lang.NullPointerException e) {
@@ -194,5 +197,16 @@ public class Excel {
         }
 
     }
-
+    public static List<String> getAlfabeto(){
+        List<String> resultado = new ArrayList();
+        String toCharArray = "abcdefghijklmnopqrstuvwxyz".toUpperCase();
+        for(int i = 0; i< toCharArray.length(); i++){
+            resultado.add(toCharArray.substring(i, i+1));
+        }
+        return resultado;
+    }
+    
+    public static int getPosition(char letra){
+        return (int)letra - 'A' + 0;
+    }
 }

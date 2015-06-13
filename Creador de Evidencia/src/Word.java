@@ -75,7 +75,7 @@ public class Word {
         tr = factory.createTr();
 
         addTableCellWithWidth(tr, "Resultado", anchoCelda1);
-        addTableCellWithWidth(tr, "", anchoCelda2);
+        addTableCellWithWidth(tr, Configuracion.getInstance().getTestResult() , anchoCelda2);
 
         table.getContent().add(tr);
 
@@ -89,7 +89,7 @@ public class Word {
         for(int i=0; i< s.getPasos().size(); i++){
             wordMLPackage.getMainDocumentPart().addParagraphOfText(s.getPasos().get(i));
         }
-        
+        wordMLPackage.getMainDocumentPart().addParagraphOfText("");
     }
 
     public void Guardar() {

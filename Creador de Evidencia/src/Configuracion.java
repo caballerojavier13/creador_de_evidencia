@@ -18,11 +18,12 @@ public class Configuracion {
     
     private String Titulo;
     private String Date;
-    
+    private String TestResult;
     
     private Configuracion() {
         Titulo = "Evidencia de Ejecución";
         Date = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+        TestResult = "";
     }
     
     public static Configuracion getInstance() {
@@ -50,6 +51,14 @@ public class Configuracion {
         this.Date = Date;
     }
 
+    public String getTestResult() {
+        return TestResult;
+    }
+
+    public void setTestResult(String TestResult) {
+        this.TestResult = TestResult;
+    }
+    
         
     
     
