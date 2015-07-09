@@ -28,21 +28,18 @@ public class Excel {
 
     private Logger log = LoggerFactory.getLogger(PartsList.class);
 
-    private List<WorksheetPart> worksheets = new ArrayList<>();
+    private List<WorksheetPart> worksheets = new ArrayList<WorksheetPart>();
 
     private SharedStrings sharedStrings = null;
 
     private int Num_Col_Nombre;
     private int Num_Col_Step;
     private int Num_Col_Descripcion;
-    private int Num_Col_Descripcion_Step;
-    private int Num_Col_Step_Result;
 
-    public Excel(File file, int Num_Col_Nombre, int Num_Col_Step, int Num_Col_Descripcion_Step, int Num_Col_Step_Result) {
+    public Excel(File file, int Num_Col_Nombre, int Num_Col_Step, int Num_Col_Descripcion) {
         this.Num_Col_Nombre = Num_Col_Nombre;
         this.Num_Col_Step = Num_Col_Step;
-        this.Num_Col_Descripcion_Step = Num_Col_Descripcion_Step;
-        this.Num_Col_Step_Result = Num_Col_Step_Result;
+        this.Num_Col_Descripcion = Num_Col_Descripcion;
         try {
             org.docx4j.openpackaging.packages.OpcPackage xlsxPkg = org.docx4j.openpackaging.packages.OpcPackage.load(file);
 
@@ -56,7 +53,6 @@ public class Excel {
         }
     }
 
-    @SuppressWarnings("null")
     public List<Caso_de_Prueba> getCasos_de_Prueba() {
         List<Caso_de_Prueba> resultado = new ArrayList();
         Worksheet ws = worksheets.get(worksheets.size()-1).getJaxbElement();
@@ -72,10 +68,10 @@ public class Excel {
                     }
                     cp = new Caso_de_Prueba();
                     cp.setNombre(getData(r.getC().get(Num_Col_Nombre)));
-                    cp.addStep(getStep(r));
+                    cp.addStep(getStep(r.getC().get(Num_Col_Descripcion)));
 
                 } else {
-                    cp.addStep(getStep(r));
+                    cp.addStep(getStep(r.getC().get(Num_Col_Descripcion)));
                 }
             } catch (java.lang.NullPointerException e) {
                 
@@ -126,34 +122,19 @@ public class Excel {
         return resultado;
     }
 
-    private Step getStep(Row r) {
-        Cell c = r.getC().get(Num_Col_Descripcion_Step);
+    private Step getStep(Cell c) {
         Step resultado = new Step();
         if (c.getT().equals(STCellType.S)) {
             try {
                 String[] split = sharedStrings.getJaxbElement().getSi().get(Integer.parseInt(c.getV())).getT().getValue().split("\n");
-                for (String split1 : split) {
-                    resultado.addPaso(split1);
+                for (int i = 0; i < split.length; i++) {
+                    resultado.addPaso(split[i]);
                 }
             } catch (java.lang.NullPointerException e) {
 
             }
         } else {
             resultado.addPaso(c.getV());
-        }
-        
-        c = r.getC().get(Num_Col_Step_Result);
-        if (c.getT().equals(STCellType.S)) {
-            try {
-                String[] split = sharedStrings.getJaxbElement().getSi().get(Integer.parseInt(c.getV())).getT().getValue().split("\n");
-                for (String split1 : split) {
-                    resultado.addResultado(split1);
-                }
-            } catch (java.lang.NullPointerException e) {
-
-            }
-        } else {
-            resultado.addResultado(c.getV());
         }
         return resultado;
     }

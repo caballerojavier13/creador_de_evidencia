@@ -14,9 +14,11 @@ import java.util.List;
  */
 public class Step {
     private List<String> pasos;
+    private List<String> resultados;
 
     public Step() {
         pasos = new ArrayList();
+        resultados = new ArrayList();
     }
 
     public Step(List<String> pasos) {
@@ -35,8 +37,15 @@ public class Step {
         this.pasos = pasos;
     }
 
-    
-    
-   
-    
+    public List<String> getResultados() {
+        return resultados;
+    }
+
+    public void addResultado(String resultado) {
+        this.resultados.add(resultado);
+    }
+        
+    public void setResultados(List<String> resultados) {
+        this.resultados = resultados;
+    }
 }

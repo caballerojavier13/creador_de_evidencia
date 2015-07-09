@@ -20,6 +20,8 @@ public class Configuracion_Visual extends javax.swing.JDialog {
 
     /**
      * Creates new form Configuración_Visual
+     * @param parent
+     * @param modal
      */
     public Configuracion_Visual(java.awt.Frame parent, boolean modal) {
 
@@ -35,6 +37,14 @@ public class Configuracion_Visual extends javax.swing.JDialog {
             
         }
         Date_picker.setDate(cal.getTime());
+                
+        Num_Col_Nombre.setValue(Excel.getAlfabeto().get(Configuracion.getInstance().getNomb_cp()));
+        Num_Col_Step.setValue(Excel.getAlfabeto().get(Configuracion.getInstance().getNomb_step()));
+        Num_Col_Descripcion.setValue(Excel.getAlfabeto().get(Configuracion.getInstance().getDesc_step()));
+        Num_Col_Result.setValue(Excel.getAlfabeto().get(Configuracion.getInstance().getResul_step()));
+        
+        tam_nombre_corto.setValue(Configuracion.getInstance().getTam_nombre_corto());
+        
         this.setLocationRelativeTo(parent);
     }
 
@@ -55,10 +65,21 @@ public class Configuracion_Visual extends javax.swing.JDialog {
         Date_picker = new org.jdesktop.swingx.JXDatePicker();
         jLabel4 = new javax.swing.JLabel();
         Resultado = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        Num_Col_Nombre = new javax.swing.JSpinner();
+        Num_Col_Step = new javax.swing.JSpinner();
+        Num_Col_Descripcion = new javax.swing.JSpinner();
+        tam_nombre_corto = new javax.swing.JSpinner();
+        jLabel9 = new javax.swing.JLabel();
+        Num_Col_Result = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("DejaVu Sans", 0, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Configuración");
         jLabel1.setToolTipText("");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -82,6 +103,31 @@ public class Configuracion_Visual extends javax.swing.JDialog {
 
         jLabel4.setText("Resultado Predeterminado:");
 
+        jLabel7.setText("Cantidad de caracteres del nombre corto de caso de prueba:");
+
+        jLabel6.setText("Letra de columna de la descripción del paso:");
+
+        jLabel5.setText("Letra de columna del nombre del paso:");
+
+        jLabel8.setText("Letra de columna del nombre del caso de prueba:");
+
+        Num_Col_Nombre.setModel(new javax.swing.SpinnerListModel(Excel.getAlfabeto()));
+        Num_Col_Nombre.setValue(new String("D"));
+
+        Num_Col_Step.setModel(new javax.swing.SpinnerListModel(Excel.getAlfabeto()));
+        Num_Col_Step.setValue(new String("H"));
+
+        Num_Col_Descripcion.setModel(new javax.swing.SpinnerListModel(Excel.getAlfabeto()));
+        Num_Col_Descripcion.setValue(new String("I"));
+
+        tam_nombre_corto.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(17), Integer.valueOf(1), null, Integer.valueOf(1)));
+        tam_nombre_corto.setValue(17);
+
+        jLabel9.setText("Letra de columna del resultado esperado del paso:");
+
+        Num_Col_Result.setModel(new javax.swing.SpinnerListModel(Excel.getAlfabeto()));
+        Num_Col_Result.setValue(new String("I"));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -89,31 +135,37 @@ public class Configuracion_Visual extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(114, 114, 114))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(159, 159, 159))))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(134, 134, 134)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Date_picker, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                                    .addComponent(Titulo)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(Resultado)))
-                        .addContainerGap())))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addGap(152, 152, 152)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Date_picker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Titulo)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(Resultado))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Num_Col_Result, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Num_Col_Descripcion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Num_Col_Step, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Num_Col_Nombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addComponent(tam_nombre_corto, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,9 +183,29 @@ public class Configuracion_Visual extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(Resultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Num_Col_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Num_Col_Step, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Num_Col_Descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(Num_Col_Result, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(tam_nombre_corto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addContainerGap())
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -144,6 +216,16 @@ public class Configuracion_Visual extends javax.swing.JDialog {
         Configuracion.getInstance().setTitulo(Titulo.getText());
         Configuracion.getInstance().setDate(new SimpleDateFormat("dd/MM/yyyy").format(Date_picker.getDate()));
         Configuracion.getInstance().setTestResult(Resultado.getText());
+        
+        Configuracion.getInstance().setNomb_cp(Excel.getPosition(((String)Num_Col_Nombre.getValue()).charAt(0)));
+        Configuracion.getInstance().setNomb_step(Excel.getPosition(((String)Num_Col_Step.getValue()).charAt(0)));
+        Configuracion.getInstance().setDesc_step(Excel.getPosition(((String)Num_Col_Descripcion.getValue()).charAt(0)));
+        Configuracion.getInstance().setResul_step(Excel.getPosition(((String)Num_Col_Result.getValue()).charAt(0)));
+        
+        Configuracion.getInstance().setTam_nombre_corto((Integer)tam_nombre_corto.getValue());
+        
+        Configuracion.getInstance().setTestResult(Resultado.getText());
+                
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -151,6 +233,10 @@ public class Configuracion_Visual extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.jdesktop.swingx.JXDatePicker Date_picker;
+    private javax.swing.JSpinner Num_Col_Descripcion;
+    private javax.swing.JSpinner Num_Col_Nombre;
+    private javax.swing.JSpinner Num_Col_Result;
+    private javax.swing.JSpinner Num_Col_Step;
     private javax.swing.JTextField Resultado;
     private javax.swing.JTextField Titulo;
     private javax.swing.JButton jButton1;
@@ -158,5 +244,11 @@ public class Configuracion_Visual extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JSpinner tam_nombre_corto;
     // End of variables declaration//GEN-END:variables
 }

@@ -8,11 +8,7 @@ import org.docx4j.openpackaging.exceptions.Docx4JException;
 import org.docx4j.openpackaging.exceptions.InvalidFormatException;
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 import org.docx4j.wml.CTBorder;
-import org.docx4j.wml.Jc;
-import org.docx4j.wml.JcEnumeration;
 import org.docx4j.wml.ObjectFactory;
-import org.docx4j.wml.P;
-import org.docx4j.wml.PPr;
 import org.docx4j.wml.STBorder;
 import org.docx4j.wml.Tbl;
 import org.docx4j.wml.TblBorders;
@@ -56,17 +52,7 @@ public class Word {
     }
 
     public void AgregarEncabezado() {
-        PPr paragraphProperties;
-
-        Jc justification = factory.createJc();
-        justification.setVal(JcEnumeration.CENTER);
-        
-        P titulo = wordMLPackage.getMainDocumentPart().addStyledParagraphOfText("Title", Configuracion.getInstance().getTitulo());
-        
-        paragraphProperties = titulo.getPPr();
-        paragraphProperties.setJc(justification);
-        
-        
+        wordMLPackage.getMainDocumentPart().addStyledParagraphOfText("Title", Configuracion.getInstance().getTitulo());
         Tbl table = factory.createTbl();
         int anchoCelda1 = 2000;
         int anchoCelda2 = 8000;
@@ -98,20 +84,12 @@ public class Word {
 
     public void AgregarStep(int numStep, Step s) {
         wordMLPackage.getMainDocumentPart().addParagraphOfText("");
-        wordMLPackage.getMainDocumentPart().addStyledParagraphOfText("Heading2","Step" + (numStep + 1) + ":");
+        wordMLPackage.getMainDocumentPart().addParagraphOfText("Step" + (numStep + 1) + ":");
         wordMLPackage.getMainDocumentPart().addParagraphOfText("");
-        wordMLPackage.getMainDocumentPart().addStyledParagraphOfText("Heading3","Pasos:");
         for(int i=0; i< s.getPasos().size(); i++){
             wordMLPackage.getMainDocumentPart().addParagraphOfText(s.getPasos().get(i));
         }
         wordMLPackage.getMainDocumentPart().addParagraphOfText("");
-        wordMLPackage.getMainDocumentPart().addStyledParagraphOfText("Heading3","Resultado Actual:");
-        wordMLPackage.getMainDocumentPart().addParagraphOfText("");
-        wordMLPackage.getMainDocumentPart().addParagraphOfText("");
-        wordMLPackage.getMainDocumentPart().addStyledParagraphOfText("Heading3","Resultado Esperado:");
-        for(int i=0; i< s.getResultados().size(); i++){
-            wordMLPackage.getMainDocumentPart().addParagraphOfText(s.getResultados().get(i));
-        }
     }
 
     public void Guardar() {
